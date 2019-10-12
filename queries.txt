@@ -1,0 +1,25 @@
+query GetHello {
+  hello
+}
+
+query GetUser($i: Int = 2) {
+  users(index: $i) {
+    id
+    name
+  }
+}
+
+#@skip directive also available
+query IncludeExample($withHello: Boolean = false) {
+  hello @include(if: $withHello)
+}
+
+query FragmentExample($i: Int = 2) {
+  users(index: $i) {
+    ...username
+  }
+}
+
+fragment username on User {
+  name
+}
